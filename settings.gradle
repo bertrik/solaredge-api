@@ -1,0 +1,4 @@
+include 'solaredge-api'
+
+rootProject.name = 'solaredge-api'
+

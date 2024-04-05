@@ -1,0 +1,36 @@
+{
+  "details": {
+    "id": 1111111,
+    "name": "Name",
+    "accountId": 9999,
+    "status": "Active",
+    "peakPower": 2.24,
+    "lastUpdateTime": "2024-04-05",
+    "installationDate": "2020-07-08",
+    "ptoDate": null,
+    "notes": "",
+    "type": "Optimizers & Inverters",
+    "location": {
+      "country": "Netherlands",
+      "city": "City",
+      "address": "Address",
+      "zip": "9999 XX",
+      "timeZone": "Europe/Amsterdam",
+      "countryCode": "NL"
+    },
+    "primaryModule": {
+      "manufacturerName": "JinkoSolar Holding Co. Ltd.",
+      "modelName": "JKM-320M-60 Cheetah",
+      "maximumPower": 320.0,
+      "temperatureCoef": -0.37
+    },
+    "uris": {
+      "DETAILS": "/site/1111111/details",
+      "DATA_PERIOD": "/site/1111111/dataPeriod",
+      "OVERVIEW": "/site/1111111/overview"
+    },
+    "publicSettings": {
+      "isPublic": false
+    }
+  }
+}

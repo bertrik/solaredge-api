@@ -1,0 +1,5 @@
+---
+host: "https://monitoringapi.solaredge.com"
+timeout: 10
+siteId: ""
+apiKey: ""
