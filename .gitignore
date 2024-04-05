@@ -1,0 +1,4 @@
+/solaredgeclient.yaml
+build/
+.*
+
