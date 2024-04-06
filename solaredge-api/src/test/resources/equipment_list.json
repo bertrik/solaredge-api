@@ -1,0 +1,14 @@
+{
+  "reporters": {
+    "count": 1,
+    "list": [
+      {
+        "name": "Inverter 1",
+        "manufacturer": "SolarEdge",
+        "model": "SE2000M-RWK02BNN4",
+        "serialNumber": "7777777-00",
+        "kWpDC": null
+      }
+    ]
+  }
+}

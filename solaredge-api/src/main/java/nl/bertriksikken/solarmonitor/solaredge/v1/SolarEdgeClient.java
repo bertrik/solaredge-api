@@ -28,12 +28,8 @@ public final class SolarEdgeClient {
     public static SolarEdgeClient create(SolarEdgeClientConfig config) {
         Duration timeout = config.getTimeout();
         LOG.info("Creating new REST client for host '{}' with timeout {}", config.getHost(), timeout);
-        OkHttpClient client = new OkHttpClient().newBuilder()
-                .connectTimeout(timeout).readTimeout(timeout).writeTimeout(timeout).build();
-        Retrofit retrofit = new Retrofit.Builder().baseUrl(config.getHost())
-                .addConverterFactory(ScalarsConverterFactory.create())
-                .addConverterFactory(JacksonConverterFactory.create())
-                .client(client).build();
+        OkHttpClient client = new OkHttpClient().newBuilder().connectTimeout(timeout).readTimeout(timeout).writeTimeout(timeout).build();
+        Retrofit retrofit = new Retrofit.Builder().baseUrl(config.getHost()).addConverterFactory(ScalarsConverterFactory.create()).addConverterFactory(JacksonConverterFactory.create()).client(client).build();
         ISolarEdgeApi restApi = retrofit.create(ISolarEdgeApi.class);
         return new SolarEdgeClient(restApi, config.getSiteId(), config.getApikey());
     }
@@ -54,5 +50,32 @@ public final class SolarEdgeClient {
             return null;
         }
         return response.body().getDetails();
+    }
+
+    public String getSiteInventory() throws IOException {
+        Response<String> response = restApi.getSiteInventory(siteId, apiKey).execute();
+        if (!response.isSuccessful()) {
+            LOG.warn("Call getSiteDetails() failed: {}-{}", response.code(), response.errorBody().source());
+            return null;
+        }
+        return response.body();
+    }
+
+    public String getEquipmentSensors() throws IOException {
+        Response<String> response = restApi.getEquipmentSensors(siteId, apiKey).execute();
+        if (!response.isSuccessful()) {
+            LOG.warn("Call getSensors() failed: {}-{}", response.code(), response.errorBody().source());
+            return null;
+        }
+        return response.body();
+    }
+
+    public String getEquipmentList() throws IOException {
+        Response<String> response = restApi.getEquipmentList(siteId, apiKey).execute();
+        if (!response.isSuccessful()) {
+            LOG.warn("Call getSiteEquipment() failed: {}-{}", response.code(), response.errorBody().source());
+            return null;
+        }
+        return response.body();
     }
 }

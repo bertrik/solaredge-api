@@ -24,6 +24,16 @@ public final class RunSolarEdgeClient {
         }
 
         SolarEdgeClient client = SolarEdgeClient.create(config);
+
+        String inventory = client.getSiteInventory();
+        LOG.info("Inventory: {}", inventory);
+
+        String equipment = client.getEquipmentList();
+        LOG.info("Equipment: {}", equipment);
+
+        String sensors = client.getEquipmentSensors();
+        LOG.info("Sensors: {}", sensors);
+
         SiteOverview overview = client.getSiteOverview();
         LOG.info("Overview: {}", overview);
 

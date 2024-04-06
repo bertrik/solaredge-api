@@ -15,4 +15,13 @@ public interface ISolarEdgeApi {
     @GET("/site/{id}/details")
     Call<SiteData> getSiteDetails(@Path("id") String site, @Query("api_key") String apiKey);
 
+    @GET("/site/{id}/inventory")
+    Call<String> getSiteInventory(@Path("id") String site, @Query("api_key") String apiKey);
+
+    @GET("/equipment/{id}/sensors")
+    Call<String> getEquipmentSensors(@Path("id") String site, @Query("api_key") String apiKey);
+
+    @GET("/equipment/{id}/list")
+    Call<String> getEquipmentList(@Path("id") String site, @Query("api_key") String apiKey);
+
 }

@@ -1,0 +1,19 @@
+{
+  "Inventory": {
+    "meters": [],
+    "sensors": [],
+    "gateways": [],
+    "batteries": [],
+    "inverters": [
+      {
+        "name": "Inverter 1",
+        "manufacturer": "SolarEdge",
+        "model": "SE2000M-RWK02BNN4",
+        "communicationMethod": "WIFI",
+        "cpuVersion": "4.15.119",
+        "SN": "77777777-00",
+        "connectedOptimizers": 4
+      }
+    ]
+  }
+}
