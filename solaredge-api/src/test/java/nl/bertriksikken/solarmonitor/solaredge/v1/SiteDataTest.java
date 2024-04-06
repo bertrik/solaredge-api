@@ -1,6 +1,7 @@
 package nl.bertriksikken.solarmonitor.solaredge.v1;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.junit.Assert;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -10,7 +11,6 @@ import java.net.URL;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
-import java.util.TimeZone;
 
 public final class SiteDataTest {
 
@@ -22,7 +22,7 @@ public final class SiteDataTest {
     public void testOverview() throws IOException {
         URL url = getClass().getClassLoader().getResource("site_overview.json");
         SiteData siteData = MAPPER.readValue(url, SiteData.class);
-        SiteData.Overview overview = siteData.getOverview();
+        SiteOverview overview = siteData.getOverview();
         LocalDateTime dateTime = overview.getLastUpdateTime();
         ZonedDateTime zonedDateTime = ZonedDateTime.of(dateTime, TIME_ZONE);
         LOG.info("Date/time = {}", zonedDateTime);
@@ -32,7 +32,8 @@ public final class SiteDataTest {
     public void testDetails() throws IOException {
         URL url = getClass().getClassLoader().getResource("site_details.json");
         SiteData siteData = MAPPER.readValue(url, SiteData.class);
-        SiteData.Details details = siteData.getDetails();
+        SiteDetails details = siteData.getDetails();
+        Assert.assertNotNull(details);
     }
 
 }

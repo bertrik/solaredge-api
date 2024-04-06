@@ -24,11 +24,11 @@ public final class RunSolarEdgeClient {
         }
 
         SolarEdgeClient client = SolarEdgeClient.create(config);
-        SiteData overview = client.getSiteOverview();
+        SiteOverview overview = client.getSiteOverview();
         LOG.info("Overview: {}", overview);
 
-        String details = client.getSiteDetails();
-        LOG.info("Details: {}", overview);
+        SiteDetails details = client.getSiteDetails();
+        LOG.info("Details: {}", details);
     }
 
 }

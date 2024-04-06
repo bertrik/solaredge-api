@@ -38,21 +38,21 @@ public final class SolarEdgeClient {
         return new SolarEdgeClient(restApi, config.getSiteId(), config.getApikey());
     }
 
-    public SiteData getSiteOverview() throws IOException {
+    public SiteOverview getSiteOverview() throws IOException {
         Response<SiteData> response = restApi.getSiteOverview(siteId, apiKey).execute();
         if (!response.isSuccessful()) {
             LOG.warn("Call getSiteOverview() failed: {}-{}", response.code(), response.errorBody().source());
             return null;
         }
-        return response.body();
+        return response.body().getOverview();
     }
 
-    public String getSiteDetails() throws IOException {
-        Response<String> response = restApi.getSiteDetails(siteId, apiKey).execute();
+    public SiteDetails getSiteDetails() throws IOException {
+        Response<SiteData> response = restApi.getSiteDetails(siteId, apiKey).execute();
         if (!response.isSuccessful()) {
             LOG.warn("Call getSiteDetails() failed: {}-{}", response.code(), response.errorBody().source());
             return null;
         }
-        return response.body();
+        return response.body().getDetails();
     }
 }

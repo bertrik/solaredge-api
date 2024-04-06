@@ -13,6 +13,6 @@ public interface ISolarEdgeApi {
     Call<SiteData> getSiteOverview(@Path("id") String site, @Query("api_key") String apiKey);
 
     @GET("/site/{id}/details")
-    Call<String> getSiteDetails(@Path("id") String site, @Query("api_key") String apiKey);
+    Call<SiteData> getSiteDetails(@Path("id") String site, @Query("api_key") String apiKey);
 
 }
