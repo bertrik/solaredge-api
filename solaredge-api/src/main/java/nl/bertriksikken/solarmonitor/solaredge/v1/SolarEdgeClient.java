@@ -12,14 +12,16 @@ import java.io.IOException;
 import java.time.Duration;
 import java.util.Objects;
 
-public final class SolarEdgeClient {
+public final class SolarEdgeClient implements AutoCloseable {
 
     private static final Logger LOG = LoggerFactory.getLogger(SolarEdgeClient.class);
+    private final OkHttpClient httpClient;
     private final ISolarEdgeApi restApi;
     private final String siteId;
     private final String apiKey;
 
-    public SolarEdgeClient(ISolarEdgeApi restApi, String siteId, String apiKey) {
+    public SolarEdgeClient(OkHttpClient httpClient, ISolarEdgeApi restApi, String siteId, String apiKey) {
+        this.httpClient = httpClient;
         this.restApi = Objects.requireNonNull(restApi);
         this.siteId = siteId;
         this.apiKey = apiKey;
@@ -31,7 +33,13 @@ public final class SolarEdgeClient {
         OkHttpClient client = new OkHttpClient().newBuilder().connectTimeout(timeout).readTimeout(timeout).writeTimeout(timeout).build();
         Retrofit retrofit = new Retrofit.Builder().baseUrl(config.getHost()).addConverterFactory(ScalarsConverterFactory.create()).addConverterFactory(JacksonConverterFactory.create()).client(client).build();
         ISolarEdgeApi restApi = retrofit.create(ISolarEdgeApi.class);
-        return new SolarEdgeClient(restApi, config.getSiteId(), config.getApikey());
+        return new SolarEdgeClient(client, restApi, config.getSiteId(), config.getApikey());
+    }
+
+    @Override
+    public void close()  {
+        httpClient.dispatcher().executorService().shutdown();
+        httpClient.connectionPool().evictAll();
     }
 
     public SiteOverview getSiteOverview() throws IOException {
@@ -40,7 +48,7 @@ public final class SolarEdgeClient {
             LOG.warn("Call getSiteOverview() failed: {}-{}", response.code(), response.errorBody().source());
             return null;
         }
-        return response.body().getOverview();
+        return response.body().overview();
     }
 
     public SiteDetails getSiteDetails() throws IOException {
@@ -49,7 +57,7 @@ public final class SolarEdgeClient {
             LOG.warn("Call getSiteDetails() failed: {}-{}", response.code(), response.errorBody().source());
             return null;
         }
-        return response.body().getDetails();
+        return response.body().details();
     }
 
     public String getSiteInventory() throws IOException {
@@ -78,4 +86,5 @@ public final class SolarEdgeClient {
         }
         return response.body();
     }
+
 }

@@ -9,7 +9,7 @@ import java.io.IOException;
 
 public final class RunSolarEdgeClient {
 
-    private static final File configFile = new File("solaredgeclient.yaml");
+    private static final File configFile = new File(".solaredgeclient.yaml");
 
     private static final Logger LOG = LoggerFactory.getLogger(RunSolarEdgeClient.class);
 
@@ -23,22 +23,22 @@ public final class RunSolarEdgeClient {
             yamlMapper.writeValue(configFile, config);
         }
 
-        SolarEdgeClient client = SolarEdgeClient.create(config);
+        try (SolarEdgeClient client = SolarEdgeClient.create(config)) {
+            String inventory = client.getSiteInventory();
+            LOG.info("Inventory: {}", inventory);
 
-        String inventory = client.getSiteInventory();
-        LOG.info("Inventory: {}", inventory);
+            String equipment = client.getEquipmentList();
+            LOG.info("Equipment: {}", equipment);
 
-        String equipment = client.getEquipmentList();
-        LOG.info("Equipment: {}", equipment);
+            String sensors = client.getEquipmentSensors();
+            LOG.info("Sensors: {}", sensors);
 
-        String sensors = client.getEquipmentSensors();
-        LOG.info("Sensors: {}", sensors);
+            SiteOverview overview = client.getSiteOverview();
+            LOG.info("Overview: {}", overview);
 
-        SiteOverview overview = client.getSiteOverview();
-        LOG.info("Overview: {}", overview);
-
-        SiteDetails details = client.getSiteDetails();
-        LOG.info("Details: {}", details);
+            SiteDetails details = client.getSiteDetails();
+            LOG.info("Details: {}", details);
+        }
     }
 
 }

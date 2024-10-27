@@ -22,7 +22,7 @@ public final class SiteDataTest {
     public void testOverview() throws IOException {
         URL url = getClass().getClassLoader().getResource("site_overview.json");
         SiteData siteData = MAPPER.readValue(url, SiteData.class);
-        SiteOverview overview = siteData.getOverview();
+        SiteOverview overview = siteData.overview();
         LocalDateTime dateTime = overview.getLastUpdateTime();
         ZonedDateTime zonedDateTime = ZonedDateTime.of(dateTime, TIME_ZONE);
         LOG.info("Date/time = {}", zonedDateTime);
@@ -32,7 +32,7 @@ public final class SiteDataTest {
     public void testDetails() throws IOException {
         URL url = getClass().getClassLoader().getResource("site_details.json");
         SiteData siteData = MAPPER.readValue(url, SiteData.class);
-        SiteDetails details = siteData.getDetails();
+        SiteDetails details = siteData.details();
         Assert.assertNotNull(details);
     }
 
