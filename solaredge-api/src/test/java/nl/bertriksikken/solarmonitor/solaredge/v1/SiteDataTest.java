@@ -1,8 +1,8 @@
 package nl.bertriksikken.solarmonitor.solaredge.v1;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -33,7 +33,7 @@ public final class SiteDataTest {
         URL url = getClass().getClassLoader().getResource("site_details.json");
         SiteData siteData = MAPPER.readValue(url, SiteData.class);
         SiteDetails details = siteData.details();
-        Assert.assertNotNull(details);
+        Assertions.assertNotNull(details);
     }
 
 }

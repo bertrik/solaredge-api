@@ -1,8 +1,9 @@
 [versions]
-jackson = "2.18.0"
+errorprone = "2.36.0"
+jackson = "2.18.2"
 retrofit = "2.11.0"
 slf4j = "2.0.16"
-errorprone = "2.35.1"
+junit = "5.11.3"
 
 [libraries]
 errorprone_annotations = { module = "com.google.errorprone:error_prone_annotations", version.ref = "errorprone" }
@@ -12,7 +13,10 @@ jackson-csv = { module = "com.fasterxml.jackson.dataformat:jackson-dataformat-cs
 jackson-jsr310 = { module = "com.fasterxml.jackson.datatype:jackson-datatype-jsr310", version.ref = "jackson" }
 jackson-yaml = { module = "com.fasterxml.jackson.dataformat:jackson-dataformat-yaml", version.ref = "jackson" }
 
-junit = "junit:junit:4.13.2"
+junit-bom = { module = "org.junit:junit-bom", version.ref = "junit" }
+junit-jupiter = { module = "org.junit.jupiter:junit-jupiter" }
+junit-platform-launcher = { module = "org.junit.platform:junit-platform-launcher" }
+
 reload4j = { module = "org.slf4j:slf4j-reload4j", version.ref = "slf4j" }
 retrofit = { module = "com.squareup.retrofit2:retrofit", version.ref = "retrofit" }
 retrofit-jackson = { module = "com.squareup.retrofit2:converter-jackson", version.ref = "retrofit" }
