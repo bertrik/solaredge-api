@@ -6,7 +6,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.time.Duration;
 
-@JsonIgnoreProperties()
+@JsonIgnoreProperties
 @JsonAutoDetect(getterVisibility = JsonAutoDetect.Visibility.NONE)
 public final class SolarEdgeClientConfig {
 

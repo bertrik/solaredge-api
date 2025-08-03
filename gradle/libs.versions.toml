@@ -1,9 +1,9 @@
 [versions]
-errorprone = "2.38.0"
-jackson = "2.19.1"
+errorprone = "2.41.0"
+jackson = "2.19.2"
 retrofit = "3.0.0"
 slf4j = "2.0.17"
-junit = "5.13.1"
+junit = "5.13.4"
 
 [libraries]
 errorprone_annotations = { module = "com.google.errorprone:error_prone_annotations", version.ref = "errorprone" }
@@ -38,6 +38,6 @@ retrofit = [
 
 [plugins]
 dependencycheck = "org.owasp.dependencycheck:8.4.3"
-errorprone = "net.ltgt.errorprone:4.2.0"
+errorprone = "net.ltgt.errorprone:4.3.0"
 versions = "com.github.ben-manes.versions:0.52.0"
 
